@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyTravel.BookingStatusUpdate", "HappyTravel.BookingStatusUpdate\HappyTravel.BookingStatusUpdate.csproj", "{32BD1DC8-17BA-47AA-AE53-4FC033D6576E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyTravel.Edo.BookingStatusUpdate", "HappyTravel.Edo.BookingStatusUpdate\HappyTravel.BookingStatusUpdate.csproj", "{32BD1DC8-17BA-47AA-AE53-4FC033D6576E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
