@@ -1,0 +1,2 @@
+# uwajima
+Booking statuses updater
