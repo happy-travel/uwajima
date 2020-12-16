@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace HappyTravel.Edo.BookingStatusUpdate.Infrastructure
+namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
 {
     public interface IIdentityServerClient
     {

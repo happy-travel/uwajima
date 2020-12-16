@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
-namespace HappyTravel.Edo.BookingStatusUpdate.Infrastructure
+namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
 {
     public class EdoHttpClient : IEdoHttpClient
     {

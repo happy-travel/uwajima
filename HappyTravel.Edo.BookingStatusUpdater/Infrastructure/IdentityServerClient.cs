@@ -5,7 +5,7 @@ using IdentityModel.Client;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 
-namespace HappyTravel.Edo.BookingStatusUpdate.Infrastructure
+namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
 {
     public class IdentityServerClient : IIdentityServerClient
     {

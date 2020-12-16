@@ -4,8 +4,8 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <AssemblyName>HappyTravel.Edo.BookingStatusUpdate</AssemblyName>
-        <RootNamespace>HappyTravel.Edo.BookingStatusUpdate</RootNamespace>
+        <AssemblyName>HappyTravel.Edo.BookingStatusUpdater</AssemblyName>
+        <RootNamespace>HappyTravel.Edo.BookingStatusUpdater</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace HappyTravel.Edo.BookingStatusUpdate
+namespace HappyTravel.Edo.BookingStatusUpdater
 {
     internal static class Program
     {

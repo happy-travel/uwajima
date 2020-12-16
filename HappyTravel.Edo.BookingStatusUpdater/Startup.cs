@@ -1,6 +1,6 @@
 using System;
-using HappyTravel.Edo.BookingStatusUpdate.Infrastructure;
-using HappyTravel.Edo.BookingStatusUpdate.Services;
+using HappyTravel.Edo.BookingStatusUpdater.Services;
+using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
 using HappyTravel.VaultClient;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Builder;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace HappyTravel.Edo.BookingStatusUpdate
+namespace HappyTravel.Edo.BookingStatusUpdater
 {
     public class Startup
     {

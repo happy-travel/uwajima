@@ -1,9 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
-using HappyTravel.Edo.BookingStatusUpdate.Infrastructure;
+using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
-namespace HappyTravel.Edo.BookingStatusUpdate.Services
+namespace HappyTravel.Edo.BookingStatusUpdater.Services
 {
     public class StatusUpdateService : BackgroundService
     {
@@ -19,9 +19,7 @@ namespace HappyTravel.Edo.BookingStatusUpdate.Services
             var bookingList = await _edoClient.GetBookings();
 
             foreach (var bookingId in bookingList)
-            {
                 await _edoClient.UpdateBooking(bookingId);
-            }
 
             _applicationLifetime.StopApplication();
         }

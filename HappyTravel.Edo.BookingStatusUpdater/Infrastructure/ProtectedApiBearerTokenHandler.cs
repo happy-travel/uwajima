@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 
-namespace HappyTravel.Edo.BookingStatusUpdate.Infrastructure
+namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
 {
     public class ProtectedApiBearerTokenHandler : DelegatingHandler
     {
