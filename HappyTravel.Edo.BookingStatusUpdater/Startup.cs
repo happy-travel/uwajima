@@ -57,8 +57,7 @@ namespace HappyTravel.Edo.BookingStatusUpdater
                 client.DefaultRequestHeaders.Add("Accept", "application/json");
             })
             .AddHttpMessageHandler<ProtectedApiBearerTokenHandler>();
-
-            services.AddMemoryCache();
+            
             services.AddHostedService<StatusUpdateService>();
             services.AddHealthChecks();
         }

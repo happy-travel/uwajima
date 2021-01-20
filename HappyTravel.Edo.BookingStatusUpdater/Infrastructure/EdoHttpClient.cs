@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -25,9 +26,10 @@ namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
             return result ?? new List<int>();
         }
 
-        public async Task UpdateBooking(int bookingId)
+        public async Task UpdateBookings(IEnumerable<int> bookingIds)
         {
-            await _client.PostAsync($"{_configuration.GetValue<string>("UpdateStatus")}/{bookingId}", null!);
+            var content = new StringContent(JsonSerializer.Serialize(bookingIds), Encoding.UTF8, "application/json");
+            await _client.PostAsync($"{_configuration.GetValue<string>("UpdateStatus")}", content);
         }
 
 

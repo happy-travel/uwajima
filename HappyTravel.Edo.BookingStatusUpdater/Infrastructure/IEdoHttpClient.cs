@@ -6,6 +6,6 @@ namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
     public interface IEdoHttpClient
     {
         Task<List<int>> GetBookings();
-        Task UpdateBooking(int bookingId);
+        Task UpdateBookings(IEnumerable<int> bookingIds);
     }
 }

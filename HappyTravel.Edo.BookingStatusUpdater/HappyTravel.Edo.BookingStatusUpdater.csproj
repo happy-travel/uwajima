@@ -10,11 +10,11 @@
 
     <ItemGroup>
       <PackageReference Include="IdentityModel" Version="4.5.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
-      <PackageReference Include="HappyTravel.VaultClient" Version="1.0.5" />
+      <PackageReference Include="HappyTravel.VaultClient" Version="1.1.0" />
     </ItemGroup>
 
     <ItemGroup>

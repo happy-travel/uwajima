@@ -17,10 +17,7 @@ namespace HappyTravel.Edo.BookingStatusUpdater.Services
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var bookingList = await _edoClient.GetBookings();
-
-            foreach (var bookingId in bookingList)
-                await _edoClient.UpdateBooking(bookingId);
-
+            await _edoClient.UpdateBookings(bookingList);
             _applicationLifetime.StopApplication();
         }
 
