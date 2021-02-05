@@ -60,6 +60,7 @@ namespace HappyTravel.Edo.BookingStatusUpdater
             
             services.AddHostedService<StatusUpdateService>();
             services.AddHealthChecks();
+            services.AddMemoryCache();
         }
 
 

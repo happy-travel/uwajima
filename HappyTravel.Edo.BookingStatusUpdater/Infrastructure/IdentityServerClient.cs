@@ -20,14 +20,16 @@ namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure
 
         public async Task<string> RequestClientCredentialsTokenAsync()
         {
-            if (!_cache.TryGetValue<string>("accessToken", out var accessToken))
+            const string accessTokenKey = "accessToken";
+            
+            if (!_cache.TryGetValue<string>(accessTokenKey, out var accessToken))
             {
                 var tokenResponse = await _httpClient.RequestClientCredentialsTokenAsync(_tokenRequest);
                 if (tokenResponse.IsError)
                     throw new HttpRequestException("Something went wrong while requesting the access token");
 
-                _cache.Set("accessToken", accessToken, DateTimeOffset.UtcNow.AddSeconds(tokenResponse.ExpiresIn));
                 accessToken = tokenResponse.AccessToken;
+                _cache.Set(accessTokenKey, accessToken, DateTimeOffset.UtcNow.AddSeconds(tokenResponse.ExpiresIn));
             }
 
             return accessToken;
