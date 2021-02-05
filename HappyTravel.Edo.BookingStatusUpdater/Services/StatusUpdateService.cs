@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
+using HappyTravel.Edo.BookingStatusUpdater.Services.HttpClients;
 using Microsoft.Extensions.Hosting;
 
 namespace HappyTravel.Edo.BookingStatusUpdater.Services
