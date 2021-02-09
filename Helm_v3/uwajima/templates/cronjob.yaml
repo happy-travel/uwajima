@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "uwajima.labels" . | nindent 4 }}
 spec:
-  schedule: "*/1 * * * *"  # Set task start time in UTC time zone ( Every Day )
+  schedule: "*/30 * * * *"  # Set task start time in UTC time zone ( Every Day )
   concurrencyPolicy: "Forbid"
   failedJobsHistoryLimit: 5
   successfulJobsHistoryLimit: 3
