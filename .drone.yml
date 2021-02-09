@@ -1,4 +1,3 @@
-
 kind: pipeline
 type: docker
 name: Test
@@ -49,11 +48,9 @@ trigger:
       - push
 
 steps:
-
 - name: Build docker image & push to repository
   image: plugins/docker
   environment:
-    DOCKER_BUILDKIT: 1
     GITHUB_TOKEN:
       from_secret: GITHUB_TOKEN
     VAULT_TOKEN:
@@ -64,7 +61,7 @@ steps:
     repo: registry.happytravel.com/uwajima
     tags:
       - ${DRONE_COMMIT_SHA:0:7}-DEV
-      - ${DRONE_COMMIT_BRANCH}
+      - ${DRONE_COMMIT_BRANCH}-DEV
     force_tag: true
     use_cache: true
     username:
@@ -119,9 +116,11 @@ trigger:
   target:
     - production
 
+steps:
 - name: Build docker image & push to repository
   image: plugins/docker
   environment:
+    DOCKER_BUILDKIT: 1
     GITHUB_TOKEN:
       from_secret: GITHUB_TOKEN
     VAULT_TOKEN:
@@ -166,7 +165,7 @@ trigger:
   image: appleboy/drone-discord
   settings:
     avatar_url: https://www.pngitem.com/pimgs/m/86-868269_drone-logo-png-transparent-drone-ci-logo-png.png
-    message: "{{#success build.status}} ✅ Build #{{build.number}}\n`{{ build.event }}` of `{{repo.name}}` succeeded.\n Commit by {{commit.author}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n{{ build.link }} {{else}} ❌ Build #{{build.number}}\n`{{ build.event }}` of `{{repo.name}}` failed.\n Commit by {{commit.author}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n{{ build.link }} {{/success}}"
+    message: "{{#success build.status}} ✅ Build #{{build.number}}\n`{{ build.event }}` of `{{repo.name}}` on production succeeded.\n Commit by {{commit.author}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n{{ build.link }} {{else}} ❌ Build #{{build.number}}\n`{{ build.event }}` of `{{repo.name}}` on production failed.\n Commit by {{commit.author}} on `{{commit.branch}}`:\n``` {{commit.message}} ```\n{{ build.link }} {{/success}}"
     webhook_id:
       from_secret: DISCORD_WEBHOOK_ID
     webhook_token:
