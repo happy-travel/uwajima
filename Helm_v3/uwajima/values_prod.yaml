@@ -1,16 +1,10 @@
 replicaCount: 1
 
-jaeger:
-  sidecar: jaeger-production
-  collector_host: dns:///jaeger-production-collector-headless.observability:14250
-
-
 image:
   repository: registry.happytravel.com/uwajima
   tag: latest
   pullPolicy: Always
-imagePullSecrets:
-  - name: travel-registry
+  pullSecret: travel-registry
 nameOverride: ""
 fullnameOverride: ""
 
@@ -39,24 +33,17 @@ service:
   port: 80
 
 ingress:
-  enabled: true
-  annotations:
-    projectcontour.io/ingress.class: "contour"
-    projectcontour.io/retry-on: "5xx"
-    projectcontour.io/num-retries: "3"
-    projectcontour.io/per-try-timeout: "120s"
-    projectcontour.io/response-timeout: "120s"
-    ingress.kubernetes.io/force-ssl-redirect: "true"
-    kubernetes.io/ingress.allow-http: "false"
-    kubernetes.io/tls-acme: "true"
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: uwajima.happytravel.com
-      paths:
-        - /
-  tls:
-   - secretName: happytravel-tls
-     hosts:
-       - uwajima.happytravel.com
+    - host: chart-example.local
+      paths: []
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources:
   limits:
@@ -77,6 +64,5 @@ env:
   ASPNETCORE_ENVIRONMENT: "Production"
   HTDC_VAULT_ENDPOINT: "https://vault.happytravel.com/v1/"
   HTDC_UWAJIMA_SENTRY_ENDPOINT: "https://2c4389d41ca6482782de0773196ab36a@sentry.happytravel.com/36"
-  HTDC_REDIS_HOST: "redis-uwajima"
-  JAEGER_AGENT_HOST: "localhost"
+  JAEGER_AGENT_HOST: "jaeger-agent"
   JAEGER_AGENT_PORT: "6831"
