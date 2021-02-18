@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
+using HappyTravel.StdOutLogger.Extensions;
+using HappyTravel.StdOutLogger.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace HappyTravel.Edo.BookingStatusUpdater
 {
@@ -15,6 +18,29 @@ namespace HappyTravel.Edo.BookingStatusUpdater
                     builder
                         .UseKestrel()
                         .UseStartup<Startup>();
+                })
+                .ConfigureLogging((context, logging) =>
+                {
+                    logging.ClearProviders()
+                        .AddConfiguration(context.Configuration.GetSection("Logging"));
+
+                    var env = context.HostingEnvironment;
+                    if (env.IsEnvironment("Local"))
+                        logging.AddConsole();
+                    else
+                    {
+                        logging.AddStdOutLogger(setup =>
+                        {
+                            setup.IncludeScopes = false;
+                            setup.RequestIdHeader = Constants.DefaultRequestIdHeader;
+                            setup.UseUtcTimestamp = true;
+                        });
+                        logging.AddSentry(c =>
+                        {
+                            c.Dsn = context.Configuration[context.Configuration["Logging:Sentry:Endpoint"]];
+                            c.Environment = env.EnvironmentName;
+                        });
+                    }
                 })
                 .ConfigureAppConfiguration((context, config) =>
                 {

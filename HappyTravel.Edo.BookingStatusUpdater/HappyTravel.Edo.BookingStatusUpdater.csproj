@@ -9,12 +9,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="HappyTravel.StdOutLogger" Version="1.0.18" />
       <PackageReference Include="IdentityModel.AspNetCore" Version="3.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
       <PackageReference Include="HappyTravel.VaultClient" Version="1.1.0" />
+      <PackageReference Include="Sentry.AspNetCore" Version="3.0.6" />
     </ItemGroup>
 
     <ItemGroup>
