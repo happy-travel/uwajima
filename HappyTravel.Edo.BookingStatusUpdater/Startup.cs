@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using HappyTravel.Edo.BookingStatusUpdater.Services;
 using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
 using HappyTravel.Edo.BookingStatusUpdater.Infrastructure.Extensions;
+using HappyTravel.StdOutLogger.Extensions;
 using HappyTravel.VaultClient;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +41,10 @@ namespace HappyTravel.Edo.BookingStatusUpdater
 
         public static void Configure(IApplicationBuilder app, IHostEnvironment env)
         {
+            app.UseHttpContextLogging(
+                options => options.IgnoredPaths = new HashSet<string> { "/health" }
+            );
+            
             app.UseHealthChecks("/health");
         }
 
