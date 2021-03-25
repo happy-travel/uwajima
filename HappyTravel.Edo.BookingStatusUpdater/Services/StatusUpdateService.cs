@@ -1,12 +1,12 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
-using HappyTravel.Edo.BookingStatusUpdater.Services.HttpClients;
+using HappyTravel.Uwajima.Infrastructure;
+using HappyTravel.Uwajima.Services.HttpClients;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace HappyTravel.Edo.BookingStatusUpdater.Services
+namespace HappyTravel.Uwajima.Services
 {
     public class StatusUpdateService : BackgroundService
     {

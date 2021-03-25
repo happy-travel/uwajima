@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace HappyTravel.Edo.BookingStatusUpdater.Services.HttpClients
+namespace HappyTravel.Uwajima.Services.HttpClients
 {
     public interface IEdoHttpClient
     {
