@@ -12,7 +12,7 @@ WORKDIR /src
 COPY *.sln ./
 COPY . .
 RUN dotnet restore
-WORKDIR /src/HappyTravel.Edo.BookingStatusUpdater
+WORKDIR /src/HappyTravel.Uwajima
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
@@ -24,4 +24,4 @@ WORKDIR /app
 COPY --from=publish /app .
 HEALTHCHECK --interval=6s --timeout=10s --retries=3 CMD curl -sS 127.0.0.1/health || exit 1
 
-ENTRYPOINT ["dotnet", "HappyTravel.Edo.BookingStatusUpdater.dll"]
+ENTRYPOINT ["dotnet", "HappyTravel.Uwajima.dll"]
