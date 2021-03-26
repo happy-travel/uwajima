@@ -1,11 +1,11 @@
 ﻿using System;
-using HappyTravel.Edo.BookingStatusUpdater.Services.HttpClients;
+using HappyTravel.Uwajima.Services.HttpClients;
 using HappyTravel.VaultClient;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HappyTravel.Edo.BookingStatusUpdater.Infrastructure.Extensions
+namespace HappyTravel.Uwajima.Infrastructure.Extensions
 {
     public static class ServiceCollectionExtensions
     {

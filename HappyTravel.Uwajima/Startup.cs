@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using HappyTravel.Edo.BookingStatusUpdater.Services;
-using HappyTravel.Edo.BookingStatusUpdater.Infrastructure;
-using HappyTravel.Edo.BookingStatusUpdater.Infrastructure.Extensions;
+using HappyTravel.Uwajima.Services;
+using HappyTravel.Uwajima.Infrastructure;
+using HappyTravel.Uwajima.Infrastructure.Extensions;
 using HappyTravel.StdOutLogger.Extensions;
 using HappyTravel.VaultClient;
 using IdentityModel.Client;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Hosting.Internal;
 
-namespace HappyTravel.Edo.BookingStatusUpdater
+namespace HappyTravel.Uwajima
 {
     public class Startup
     {

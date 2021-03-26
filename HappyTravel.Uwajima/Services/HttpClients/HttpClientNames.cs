@@ -1,4 +1,4 @@
-﻿namespace HappyTravel.Edo.BookingStatusUpdater.Services.HttpClients
+﻿namespace HappyTravel.Uwajima.Services.HttpClients
 {
     public static class HttpClientNames
     {
