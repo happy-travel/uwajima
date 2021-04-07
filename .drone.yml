@@ -77,9 +77,9 @@ steps:
   image: pelotech/drone-helm3
   settings:
     mode: upgrade
-    chart: ./Helm_v3/uwajima
+    chart: ./Helm/uwajima
     release: uwajima-dev
-    values_files: ["Helm_v3/uwajima/values_dev.yaml"]
+    values_files: ["Helm/uwajima/values_dev.yaml"]
     namespace: dev
     skip_tls_verify: true
     wait_for_upgrade: true
@@ -147,9 +147,9 @@ steps:
   image: pelotech/drone-helm3:0.14.2
   settings:
     mode: upgrade
-    chart: ./Helm_v3/uwajima
+    chart: ./Helm/uwajima
     release: uwajima-production
-    values_files: ["Helm_v3/uwajima/values_prod.yaml"]
+    values_files: ["Helm/uwajima/values_prod.yaml"]
     namespace: production
     skip_tls_verify: true
     wait_for_upgrade: true
