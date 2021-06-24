@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using HappyTravel.ConsulKeyValueClient.ConfigurationProvider.Extensions;
 using HappyTravel.StdOutLogger.Extensions;
 using HappyTravel.StdOutLogger.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +33,7 @@ namespace HappyTravel.Uwajima
                     {
                         logging.AddStdOutLogger(setup =>
                         {
-                            setup.IncludeScopes = false;
+                            setup.IncludeScopes = true;
                             setup.RequestIdHeader = Constants.DefaultRequestIdHeader;
                             setup.UseUtcTimestamp = true;
                         });
@@ -49,7 +51,10 @@ namespace HappyTravel.Uwajima
                     config
                         .AddJsonFile("appsettings.json", false, true)
                         .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true, true)
-                        .AddEnvironmentVariables();
+                        .AddEnvironmentVariables()
+                        .AddConsulKeyValueClient(Environment.GetEnvironmentVariable("CONSUL_HTTP_ADDR") ?? throw new InvalidOperationException("Consul endpoint is not set"),
+                        "uwajima",
+                        Environment.GetEnvironmentVariable("CONSUL_HTTP_TOKEN") ?? throw new InvalidOperationException("Consul http token is not set"));
                 })
                 .Build()
                 .RunAsync();

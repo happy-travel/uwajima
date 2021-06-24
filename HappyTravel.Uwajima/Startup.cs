@@ -36,6 +36,7 @@ namespace HappyTravel.Uwajima
             services.AddHostedService<StatusUpdateService>();
             services.AddHealthChecks();
             services.AddMemoryCache();
+            services.AddTracing();
         }
 
 
