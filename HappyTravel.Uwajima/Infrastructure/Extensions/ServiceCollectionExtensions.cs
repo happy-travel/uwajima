@@ -4,6 +4,9 @@ using HappyTravel.VaultClient;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace HappyTravel.Uwajima.Infrastructure.Extensions
 {
@@ -33,6 +36,20 @@ namespace HappyTravel.Uwajima.Infrastructure.Extensions
                 client => { client.BaseAddress = new Uri(edoUrl); });
 
             services.AddTransient<IEdoHttpClient, EdoHttpClient>();
+        }
+        
+        
+        public static IServiceCollection AddTracing(this IServiceCollection services)
+        {
+            services.AddOpenTelemetryTracing(builder =>
+            {
+                builder.AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .SetResourceBuilder(ResourceBuilder.CreateDefault())
+                    .SetSampler(new AlwaysOnSampler());
+            });
+
+            return services;
         }
     }
 }
