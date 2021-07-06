@@ -3,7 +3,7 @@
     "HappyTravel.Edo.BookingStatusUpdate": {
       "commandName": "Project",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_ENVIRONMENT": "Local",
         "HTDC_VAULT_ENDPOINT": "https://vault.dev.happytravel.com/v1/"
       },
       "applicationUrl": "http://localhost:5060"
