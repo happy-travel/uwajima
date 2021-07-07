@@ -4,6 +4,7 @@ using HappyTravel.Uwajima.Services;
 using HappyTravel.Uwajima.Infrastructure;
 using HappyTravel.Uwajima.Infrastructure.Extensions;
 using HappyTravel.StdOutLogger.Extensions;
+using HappyTravel.Telemetry.Extensions;
 using HappyTravel.VaultClient;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Builder;
@@ -16,9 +17,10 @@ namespace HappyTravel.Uwajima
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
             _configuration = configuration;
+            _environment = environment;
         }
 
 
@@ -36,7 +38,16 @@ namespace HappyTravel.Uwajima
             services.AddHostedService<StatusUpdateService>();
             services.AddHealthChecks();
             services.AddMemoryCache();
-            services.AddTracing();
+            services.AddTracing(_configuration, options =>
+            {
+                options.ServiceName = $"{_environment.ApplicationName}-{_environment.EnvironmentName}";
+                options.JaegerHost = _environment.EnvironmentName == "Local"
+                    ? _configuration.GetValue<string>("Jaeger:AgentHost")
+                    : _configuration.GetValue<string>(_configuration.GetValue<string>("Jaeger:AgentHost"));
+                options.JaegerPort = _environment.EnvironmentName == "Local"
+                    ? _configuration.GetValue<int>("Jaeger:AgentPort")
+                    : _configuration.GetValue<int>(_configuration.GetValue<string>("Jaeger:AgentPort"));
+            });
         }
 
 
@@ -51,5 +62,6 @@ namespace HappyTravel.Uwajima
 
         
         private readonly IConfiguration _configuration;
+        private IHostEnvironment _environment { get; }
     }
 }

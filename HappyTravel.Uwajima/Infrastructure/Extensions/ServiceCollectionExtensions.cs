@@ -37,19 +37,5 @@ namespace HappyTravel.Uwajima.Infrastructure.Extensions
 
             services.AddTransient<IEdoHttpClient, EdoHttpClient>();
         }
-        
-        
-        public static IServiceCollection AddTracing(this IServiceCollection services)
-        {
-            services.AddOpenTelemetryTracing(builder =>
-            {
-                builder.AddAspNetCoreInstrumentation()
-                    .AddHttpClientInstrumentation()
-                    .SetResourceBuilder(ResourceBuilder.CreateDefault())
-                    .SetSampler(new AlwaysOnSampler());
-            });
-
-            return services;
-        }
     }
 }
