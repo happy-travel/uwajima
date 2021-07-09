@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using HappyTravel.ConsulKeyValueClient.ConfigurationProvider.Extensions;
 using HappyTravel.StdOutLogger.Extensions;
@@ -19,6 +20,22 @@ namespace HappyTravel.Uwajima
                 {
                     builder
                         .UseKestrel()
+                        .UseSentry(options =>
+                        {
+                            options.Dsn = Environment.GetEnvironmentVariable("HTDC_UWAJIMA_SENTRY_ENDPOINT");
+                            options.Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                            options.IncludeActivityData = true;
+                            options.BeforeSend = sentryEvent =>
+                            {
+                                foreach (var (key, value) in OpenTelemetry.Baggage.Current)
+                                    sentryEvent.SetTag(key, value);
+                                    
+                                sentryEvent.SetTag("TraceId", Activity.Current?.TraceId.ToString() ?? string.Empty);
+                                sentryEvent.SetTag("SpanId", Activity.Current?.SpanId.ToString() ?? string.Empty);
+
+                                return sentryEvent;
+                            };
+                        })
                         .UseStartup<Startup>();
                 })
                 .ConfigureLogging((context, logging) =>
