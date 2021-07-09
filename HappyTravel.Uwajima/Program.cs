@@ -54,11 +54,7 @@ namespace HappyTravel.Uwajima
                             setup.RequestIdHeader = Constants.DefaultRequestIdHeader;
                             setup.UseUtcTimestamp = true;
                         });
-                        logging.AddSentry(c =>
-                        {
-                            c.Dsn = context.Configuration[context.Configuration["Logging:Sentry:Endpoint"]];
-                            c.Environment = env.EnvironmentName;
-                        });
+                        logging.AddSentry();
                     }
                 })
                 .ConfigureAppConfiguration((context, config) =>
